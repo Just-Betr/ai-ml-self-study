@@ -26,6 +26,8 @@ data/
 models/
 artifacts/
 mlruns/
+mlartifacts/
+mlflow.db
 wandb/
 *.pkl
 *.joblib

@@ -31,3 +31,19 @@ docker compose down           # stop (add -v to wipe the data)
 ```
 
 Connect from code with `DATABASE_URL` from `.env` (`localhost:5432`, only reachable from this machine).
+
+MLflow tracking server (UI at http://127.0.0.1:5000; runs and artifacts stay local and gitignored):
+
+```bash
+uv run mlflow server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlartifacts
+```
+
+Local Kubernetes with kind (needs Docker running):
+
+```bash
+kind create cluster --name study    # once; sets kubectl's context to kind-study
+kubectl get nodes
+kind delete cluster --name study    # tear down
+```
+
+Notebooks: `uv run jupyter lab`.
