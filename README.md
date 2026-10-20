@@ -19,3 +19,15 @@ uv sync                       # creates .venv and installs everything from uv.lo
 cp .env.example .env          # then fill in your own keys
 uv run ruff check . && uv run ruff format --check . && uv run pytest
 ```
+
+## Local services
+
+Postgres 16 runs in Docker (needs Docker Desktop running and `POSTGRES_PASSWORD` set in `.env`):
+
+```bash
+docker compose up -d          # start; data persists in the pgdata volume
+docker compose exec postgres psql -U study -d study
+docker compose down           # stop (add -v to wipe the data)
+```
+
+Connect from code with `DATABASE_URL` from `.env` (`localhost:5432`, only reachable from this machine).
