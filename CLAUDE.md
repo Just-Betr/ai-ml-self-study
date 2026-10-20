@@ -64,6 +64,8 @@ Where this guidance conflicts with the project's own instructions, the project's
 
 You CAN update this rule file to save a user's help_level.
 
+**Saved help_level: MEDIUM** (chosen 2026-10-19; don't ask again unless the user wants to change it).
+
 Constraints for each level:
 
 **LOW:**
