@@ -15,9 +15,7 @@ Specs, design docs, decision records and the weekly log live in [`docs/`](docs/)
 ## Setup
 
 ```bash
-python -m venv .venv
-.venv/Scripts/activate        # Windows; use .venv/bin/activate on macOS/Linux
-pip install -e ".[dev]"
+uv sync                       # creates .venv and installs everything from uv.lock
 cp .env.example .env          # then fill in your own keys
-ruff check . && ruff format --check . && pytest
+uv run ruff check . && uv run ruff format --check . && uv run pytest
 ```
