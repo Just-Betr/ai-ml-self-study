@@ -1,0 +1,51 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Data
+data/
+*.csv
+*.parquet
+*.feather
+*.jsonl
+*.db
+*.sqlite
+
+# Model artifacts
+models/
+artifacts/
+mlruns/
+wandb/
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+*.gguf
+*.h5
+
+# Infra / tools
+.terraform/
+*.tfstate*
+.dart_tool/
+build/
+dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
