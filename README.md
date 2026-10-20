@@ -22,21 +22,20 @@ uv run ruff check . && uv run ruff format --check . && uv run pytest
 
 ## Local services
 
-Postgres 16 runs in Docker (needs Docker Desktop running and `POSTGRES_PASSWORD` set in `.env`):
+Postgres 16 and the MLflow tracking server run in Docker (needs Docker Desktop running and
+`POSTGRES_PASSWORD` set in `.env`). Both restart with Docker and only listen on this machine.
 
 ```bash
-docker compose up -d          # start; data persists in the pgdata volume
+docker compose up -d          # start both; data persists in the pgdata and mlartifacts volumes
+docker compose ps             # both should say (healthy)
 docker compose exec postgres psql -U study -d study
 docker compose down           # stop (add -v to wipe the data)
 ```
 
-Connect from code with `DATABASE_URL` from `.env` (`localhost:5432`, only reachable from this machine).
-
-MLflow tracking server (UI at http://127.0.0.1:5000; runs and artifacts stay local and gitignored):
-
-```bash
-uv run mlflow server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlartifacts
-```
+- Postgres: connect from code with `DATABASE_URL` from `.env` (`localhost:5432`).
+- MLflow: UI at http://127.0.0.1:5000. In code, `mlflow.set_tracking_uri("http://127.0.0.1:5000")`.
+  Runs are stored in the `mlflow` database in Postgres; artifacts go through the server into the
+  `mlartifacts` volume.
 
 Local Kubernetes with kind (needs Docker running):
 
