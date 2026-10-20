@@ -15,6 +15,7 @@ Specs, design docs, decision records and the weekly log live in [`docs/`](docs/)
 ## Setup
 
 ```bash
+setx PYTHONUTF8 1             # Windows only, once: stops UnicodeEncodeError crashes on emoji output
 uv sync                       # creates .venv and installs everything from uv.lock
 cp .env.example .env          # then fill in your own keys
 uv run ruff check . && uv run ruff format --check . && uv run pytest
